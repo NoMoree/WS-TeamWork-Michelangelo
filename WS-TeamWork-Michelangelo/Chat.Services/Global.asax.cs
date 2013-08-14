@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Chat.Data;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -16,6 +18,10 @@ namespace Chat.Services
     {
         protected void Application_Start()
         {
+
+            //Database.SetInitializer(new CreateDatabaseIfNotExists<ChatContext>());
+
+
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
