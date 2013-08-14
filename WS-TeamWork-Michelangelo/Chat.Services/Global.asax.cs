@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -19,15 +20,17 @@ namespace Chat.Services
         protected void Application_Start()
         {
 
-            //Database.SetInitializer(new CreateDatabaseIfNotExists<ChatContext>());
 
-
+            //var asd = ConfigurationManager.AppSettings["SQLSERVER_CONNECTION_STRING"];
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Database.SetInitializer(new CreateDatabaseIfNotExists<ChatContext>(ConfigurationManager.AppSettings["SQLSERVER_CONNECTION_STRING"]));
+
         }
     }
 }
